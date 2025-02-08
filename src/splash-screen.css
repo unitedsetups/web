@@ -8,7 +8,6 @@ body splash-screen {
   left: 0;
   right: 0;
   bottom: 0;
-  background-size: cover;
   color: #f9fafb;
   z-index: 999999;
   pointer-events: none;
@@ -38,6 +37,7 @@ body splash-screen .spinner > div {
   display: inline-block;
   -webkit-animation: bouncedelay 1s infinite ease-in-out both;
   animation: bouncedelay 1s infinite ease-in-out both;
+  box-shadow: 1px 2px 0px #0002, inset 1px 1px 0px #0002;
 }
 
 body splash-screen .spinner .bounce1 {

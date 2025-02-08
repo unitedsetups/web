@@ -27,8 +27,14 @@
               {
                 "glob": "**/*",
                 "input": "public"
+              },
+              {
+                "glob": "_redirects",
+                "input": "src",
+                "output": "/"
               }
             ],
+            "externalDependencies": ["images"],
             "styles": ["src/splash-screen.css", "src/styles.scss"],
             "scripts": []
           },

@@ -19,6 +19,8 @@ import {
   TranslocoService,
 } from '@jsverse/transloco';
 import { firstValueFrom } from 'rxjs';
+import { provideAuth } from './core/auth/auth.provider';
+import { provideIcons } from './core/icons/icons.provider';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -74,6 +76,8 @@ export const appConfig: ApplicationConfig = {
 
       return firstValueFrom(translocoService.load(defaultLang));
     }),
+    provideAuth(),
+    provideIcons(),
     provideTheme(),
   ],
 };

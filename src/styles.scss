@@ -2,20 +2,26 @@
 // For more information: https://material.angular.io/guide/theming
 @use "@angular/material" as mat;
 @use "tailwindcss" as *;
+@use "app_theme-colors.scss" as my-theme;
 
 html {
   @include mat.theme(
     (
       color: (
-        theme-type: light,
-        primary: mat.$azure-palette,
-        tertiary: mat.$blue-palette,
+        theme-type: dark,
+        primary: my-theme.$primary-palette,
+        tertiary: my-theme.$tertiary-palette,
       ),
       typography: Quicksand,
       density: 0,
     )
   );
 } /* You can add global styles to this file, and also import other style files */
+
+$bg-color: var(--color-slate-800);
+$bg-darker-color: var(--color-slate-900);
+$bg-darkest-color: var(--color-slate-950);
+$text-color: var(--color-slate-100);
 
 html,
 body {
@@ -24,4 +30,18 @@ body {
 body {
   margin: 0;
   font-family: "Quicksand", "Helvetica Neue", sans-serif;
+  background-color: $bg-color;
+  color: $text-color;
+}
+
+.bg-dark {
+  background-color: $bg-color;
+}
+
+.bg-darker {
+  background-color: $bg-darker-color;
+}
+
+.bg-darkest {
+  background-color: $bg-darkest-color;
 }

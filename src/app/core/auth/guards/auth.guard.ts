@@ -5,9 +5,9 @@ import { AuthService } from '../services/auth.service';
 
 export const authGuard: CanActivateFn | CanActivateChildFn = (route, state) => {
   const router: Router = inject(Router);
-  const authService: IAuthService = inject(AuthService);
+  const authService = inject(AuthService);
 
-  if (!authService.authenticated()) {
+  if (!authService.authenticated() || !authService.accessToken) {
     const redirectURL =
       state.url === '/sign-out' ? '' : `redirectURL=${state.url}`;
     return router.parseUrl(`sign-in?${redirectURL}`);
