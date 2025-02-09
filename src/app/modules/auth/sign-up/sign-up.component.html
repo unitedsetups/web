@@ -1,8 +1,8 @@
 <div
-  class="bg-[url('images/logo/usBG.webp')] bg-cover fixed top-0 w-dvw h-50 sm:h-dvh z-2 sm:z-0"
+  class="bg-[url('images/logo/usBG.webp')] bg-cover fixed top-0 w-dvw h-20 sm:h-dvh z-2 sm:z-0"
 ></div>
 <div
-  class="fixed top-0 w-dvw h-50 z-5 bg-linear-to-b from-[transparent] via-slate-800/90 via-70% to-slate-900 block sm:hidden"
+  class="fixed top-0 w-dvw h-20 z-5 bg-linear-to-b from-[transparent] via-slate-800/90 via-70% to-slate-900 block sm:hidden"
 ></div>
 <div
   class="relative z-0 sm:z-2 flex bg-slate-900 sm:bg-slate-800/75 bg backdrop-blur-md min-w-0 flex-auto flex-col items-center justify-center"
@@ -15,26 +15,36 @@
         <img src="images/logo/logo.webp" />
       </div>
       <div class="mt-8 text-4xl font-extrabold leading-tight tracking-tight">
-        {{ "sign-in" | transloco }}
+        {{ "sign-up" | transloco }}
       </div>
       <div class="mt-0.5 flex items-baseline font-medium">
-        <div>{{ "dont-have-account" | transloco }}</div>
-        <a class="ml-1 text-sky-300 hover:underline" [routerLink]="['/sign-up']"
-          >{{ "sign-up" | transloco }}
+        <div>{{ "already-have-account" | transloco }}</div>
+        <a class="ml-1 text-sky-300 hover:underline" [routerLink]="['/sign-in']"
+          >{{ "sign-in" | transloco }}
         </a>
       </div>
-      <form class="mt-8" [formGroup]="signInForm" #signInNgForm>
-        <!-- Email -->
+      <form class="mt-8" [formGroup]="signUpForm" #signUpNgForm>
         <mat-form-field class="w-full">
+          <mat-label>{{ "username" | transloco }}</mat-label>
+          <input
+            id="username"
+            matInput
+            [formControlName]="'username'"
+            type="text"
+          />
+          @if (signUpForm.get('username')?.hasError('required')) {
+          <mat-error> {{ "username-required" | transloco }} </mat-error>
+          }
+        </mat-form-field>
+        <mat-form-field class="mt-2 w-full">
           <mat-label>{{ "email" | transloco }}</mat-label>
           <input id="email" matInput [formControlName]="'email'" type="email" />
-          @if (signInForm.get('email')?.hasError('required')) {
+          @if (signUpForm.get('email')?.hasError('required')) {
           <mat-error> {{ "email-required" | transloco }} </mat-error>
-          } @if (signInForm.get('email')?.hasError('email')) {
+          } @if (signUpForm.get('email')?.hasError('email')) {
           <mat-error> {{ "email-invalid" | transloco }} </mat-error>
           }
         </mat-form-field>
-        <!-- Password -->
         <mat-form-field class="mt-2 w-full">
           <mat-label>{{ "password" | transloco }}</mat-label>
           <input
@@ -68,17 +78,23 @@
           </button>
           <mat-error> {{ "password-required" | transloco }} </mat-error>
         </mat-form-field>
-        <!-- Sign in button -->
+        <mat-form-field class="mt-2 w-full">
+          <mat-label>{{ "name" | transloco }}</mat-label>
+          <input id="name" matInput [formControlName]="'name'" type="text" />
+          @if (signUpForm.get('name')?.hasError('required')) {
+          <mat-error> {{ "name-required" | transloco }} </mat-error>
+          }
+        </mat-form-field>
         <button
           class="fuse-mat-button-large mt-6 w-full"
           mat-flat-button
           [color]="'primary'"
-          [disabled]="signInForm.disabled"
-          (click)="signIn()"
+          [disabled]="signUpForm.disabled"
+          (click)="signUp()"
         >
-          @if (!signInForm.disabled) {
-          <span> {{ "sign-in" | transloco }} </span>
-          } @if (signInForm.disabled) {
+          @if (!signUpForm.disabled) {
+          <span> {{ "sign-up" | transloco }} </span>
+          } @if (signUpForm.disabled) {
           <mat-progress-spinner
             [diameter]="24"
             [mode]="'indeterminate'"

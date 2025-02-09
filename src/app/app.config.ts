@@ -13,11 +13,7 @@ import { DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
 import { LuxonDateAdapter } from '@angular/material-luxon-adapter';
 import { provideTheme } from '../theme';
 import { TranslocoHttpLoader } from './transloco-loader';
-import {
-  getBrowserLang,
-  provideTransloco,
-  TranslocoService,
-} from '@jsverse/transloco';
+import { provideTransloco, TranslocoService } from '@jsverse/transloco';
 import { firstValueFrom } from 'rxjs';
 import { provideAuth } from './core/auth/auth.provider';
 import { provideIcons } from './core/icons/icons.provider';
@@ -61,7 +57,7 @@ export const appConfig: ApplicationConfig = {
             label: 'Español',
           },
         ],
-        defaultLang: getBrowserLang(),
+        defaultLang: 'en',
         fallbackLang: 'en',
         // Remove this option if your application doesn't support changing language in runtime.
         reRenderOnLangChange: true,
